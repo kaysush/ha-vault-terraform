@@ -9,13 +9,13 @@ logger() {
 
 logger 'Starting Vault installation'
 export VAULT_URL="https://releases.hashicorp.com/vault"
-export VAULT_VERSION="1.3.2"
+export VAULT_VERSION="1.4.3"
 
 logger 'Updating repo'
-sudo apt-get -yq update
+sudo apt-get -y update
 
 logger 'Installing utilities'
-sudo apt-get install -y unzip
+sudo apt-get install -y zip
 
 logger 'Downloading Vault binary'
 curl --silent --remote-name "${VAULT_URL}/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip"
@@ -39,4 +39,3 @@ sudo setcap cap_ipc_lock=+ep /usr/local/bin/vault
 
 logger 'Creating new user to run vault without root'
 sudo useradd --system --home /etc/vault.d --shell /bin/false vault
-
